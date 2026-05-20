@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Portfolio Page</title>
+        <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link href="https://fonts.googleapis.com/css2?family=Bungee+Inline&family=Bungee+Outline&family=Dosis:wght@200..800&family
+        =Handlee&family=Poetsen+One&family=Train+One&family=Viga&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    </head>
+    <body>
+    <div class="intro">
+        <button class="mybutton1" onclick="scrollToSection()" >Contact</button>
+        <div class="heado">
+            <h1>
+                <span class="greeting">hey!</span><br>
+                <span class="name">I am Shailja</span>
+            </h1> 
+            <h3>
+            A passionate developer crafting clean code and creative solutions.
+            I turn ideas into reliable, user-friendly digital products.
+            </h3>
+            <button class="mybutton2" onclick="downloadResume()">Download Resume</button>
+        </div>
+        <img src="static\images\frame-Photoroom.png" alt="frame" class="frame">
+        <img src="static\images\IMG-20250513-WA0002[1].png" alt="Idea" class="myphoto">
+        <div class="box1">
+            <img src="static\images\glasses_11321951.png" alt="icon" class="icon-img"> UI/UX
+        </div>
+        <img src="static\images\lines2-Photoroom.png" alt="arrow" class="arrow">
+        <img src="static\images\lines-Photoroom.png" alt="arrow1" class="arrow1">
+        <div class="side-box"></div>
+        <div class="box2">
+            <img src="static\images\goal_11621982.png" alt="icon" class="icon-img"> Frontend<br>Development
+        </div>
+        <div class="dot-grid">
+            <div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div>
+            <div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div>
+            <div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div>
+            <div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div>
+            <div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div>
+        </div>
+        <div class="dot-grid2">
+            <div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div>
+            <div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div>
+            <div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div>
+            <div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div>
+            <div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div>
+        </div>
+
+        <div class="circle"></div>
+        <div class="circle1"></div>
+        <div class="circle2"></div>
+        <div class="square"></div>
+    </div>
+
+    <div class="about-me">
+        <div class="heading">
+            <h1> About Me :</h1>
+        </div>
+        <div class="name-box">
+            <img src="static\images\about.jpg" alt="photo" class="photo" >
+            <h2 class="name-text">
+                <span>SHAILJA</span><br>
+                <span> KHANDAL</span>
+            </h2>
+        </div>
+        <div class="skill1">
+            <h2 class="text1">
+                <span>UI/UX</span><br>
+                <span>DESIGNER</span>
+            </h2>
+        </div>
+         <div class="skill2">
+            <h2 class="text2">
+                <span>FRONTEND</span><br>
+                <span>DEVELOPER</span>
+            </h2>
+        </div>
+        <div class="skill3">
+            
+        </div>
+        <div class="stack">
+            <span class="after-effects">
+                <span>AFTER</span><br> 
+                <span>EFFECTS</span>
+            </span>
+            <span class="illustrator">FIGMA</span>
+            <span class="html">&lt;HTML&gt;</span>
+            <span class="css">CSS</span>
+            <span class="javascript">JAVASCRIPT</span>
+            <span class="react">REACT</span>
+            <span class="wordpress">WORDPRESS</span>
+        </div>
+        <div class="vertical">FRAMEWORKS</div>
+        <div class="text3">
+            <span>WITH ABILITY OF</span><br>
+            <span>PROBLEM SOLVING</span>
+        </div>
+        <div class="text4">
+            <span>CURRENTLY FOCUS:</span><br>
+            <span>BACKEND </span><br>
+            <span>ENGINEERING</span>
+        </div>
+    </div>
+
+    <div class="project">
+        <h1 class="heading2">PROJECTS</h1>
+        <div class="grid-box1">
+            <div class="dot-vertical1">
+                <div class="punch1"></div>
+                <div class="punch1"></div>
+                <div class="punch1"></div>
+                <div class="punch1"></div>
+                <div class="punch1"></div>
+                <div class="punch1"></div>
+                <div class="punch1"></div>
+                <div class="punch1"></div>
+            </div>
+            <div class="small-box1">PROJECT-1</div>
+            <div class="desc2">
+                 
+                The Quiz Website is an interactive platform where users answer 10 random questions each time they log in.
+                 After the quiz, a celebration card shows their name, score, and rank, followed by a redirect to the leaderboard.
+                  The platform focuses on user engagement, competitive learning, and smooth UI/UX.
+            </div>
+        </div>
+        <div class="section1">
+            <img src="static\images\pexels-pixabay-2150.jpg" alt="space" class="space">
+            <div class="overlay">
+                <h3>SPACE QUIZ</h3>
+                <button onclick="openGitHub()">View Project</button>
+            </div>
+        </div>
+        <img src="static\images\Untitled_design__1_-removebg-preview.png" alt="deco" class="deco2">
+        <div class="grid-box2">
+            <div class="dot-vertical2">
+                <div class="punch1"></div>
+                <div class="punch1"></div>
+                <div class="punch1"></div>
+                <div class="punch1"></div>
+                <div class="punch1"></div>
+                <div class="punch1"></div>
+                <div class="punch1"></div>
+                <div class="punch1"></div>
+            </div>
+            <div class="small-box">PROJECT-2</div>
+            <div class="desc1">
+                 
+                A clean, intuitive design that helps users easily log meals, track calories, and monitor nutrition goals. 
+                The UI uses a minimalist layout with clear visuals and progress indicators. 
+                UX focuses on quick food entry, personalized insights, and motivational features like reminders
+                 and trend charts to support healthy habits.
+            </div>
+        </div>
+        <img src="static\images\Untitled_design__2_-removebg-preview.png" alt="deco" class="deco1">
+        <div class="section2">
+            <img src="static\images\healthy-diet-male-hands-holding-smartphone-keeping-track-calories-his-food-with-fitness-app.jpg" alt="space" class="space">
+            <div class="overlay">
+                <h3>DIET TRACKER </h3>
+                <button onclick="openfigma()">View Project</button>
+            </div>
+        </div>
+    </div>
+    <div class="contact" id="contact">
+        <div class="contact-box">
+            <div class="contact-me">Contact Me
+                <div class="phn">
+                    <span class="a">Phone :</span>
+                    <span class="b">7726975811</span>
+                </div>
+                    <a href="mailto:shailjakhandal555@gmail.com" title="Email"></a>
+                    <a href="https://github.com/Shailja2611"  title="GitHub">
+                        <img src="static/images/github_6424084.svgg" class="git">
+                    </a>
+                    <a href="https://www.linkedin.com/in/shailja-khandal-a10a232b3/" target="_blank" title="LinkedIn">
+                        <img src="static\images\linkedin_6422202.svg" class="linkedin"></a>
+            </div>
+          <form action="/submit" method="POST">
+    <label for="fname">First name:</label>
+    <input type="text" id="fname" name="fname">
+
+    <label for="lname">Last name:</label>
+    <input type="text" id="lname" name="lname">
+
+    <label for="email">Email:</label>
+    <input type="email" id="email" name="email">
+
+    <label for="phone">Phone No.:</label>
+    <input type="tel" id="phone" name="phone" maxlength="10">
+
+    <input type="submit" value="Submit">
+  </form>
+        </div>
+        <div class="cir1"></div>
+        <div class="triangle1"></div>
+        <div class="triangle2"></div>
+        <div class="cir2"></div>
+        <div class="triangle3"></div>
+        <div class="square1"></div>
+        <div class="square2"></div>
+        <div class="triangle4"></div>
+        <div class="cir3"></div>
+
+    </div>
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>       
+
+
+</html>
