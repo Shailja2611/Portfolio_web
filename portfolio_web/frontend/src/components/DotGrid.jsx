@@ -18,7 +18,7 @@ const DotGrid = ({ style }) => (
         style={{
           width: 5,
           height: 5,
-          background: "rgb(250,249,249)",
+          background: "#CA6180",
           borderRadius: "50%",
           opacity: 0.8,
         }}

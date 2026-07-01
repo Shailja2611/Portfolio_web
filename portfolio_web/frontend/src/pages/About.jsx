@@ -1,232 +1,293 @@
-const stackItems = [
-  { label: "AFTER EFFECTS", size: 20 },
-  { label: "FIGMA", size: 21 },
-  { label: "<HTML>", size: 18 },
-  { label: "CSS", size: 37 },
-  { label: "JAVASCRIPT", size: 11 },
-  { label: "REACT", size: 21 },
-  { label: "WORDPRESS", size: 11 },
+import { useEffect, useRef, useState } from "react";
+import { motion, useInView } from "framer-motion";
+import {
+  FaReact,
+  FaServer,
+  FaDatabase,
+  FaTools,
+  FaPalette,
+  FaMobileAlt,
+} from "react-icons/fa";
+
+const skillCategories = [
+  {
+    title: "Frontend",
+    icon: <FaReact />,
+    skills: [
+      { name: "React", level: 95 },
+      { name: "HTML", level: 98 },
+      { name: "CSS", level: 96 },
+      { name: "JavaScript", level: 92 },
+    ],
+  },
+  {
+    title: "Backend",
+    icon: <FaServer />,
+    skills: [
+      { name: "Node.js", level: 90 },
+      { name: "Express", level: 88 },
+      { name: "Python", level: 84 },
+      { name: "REST APIs", level: 90 },
+    ],
+  },
+  {
+    title: "Database",
+    icon: <FaDatabase />,
+    skills: [
+      { name: "MongoDB", level: 90 },
+      { name: "MySQL", level: 85 },
+      { name: "Firebase", level: 80 },
+      { name: "SQL", level: 86 },
+    ],
+  },
+  {
+    title: "Tools",
+    icon: <FaTools />,
+    skills: [
+      { name: "Git", level: 93 },
+      { name: "GitHub", level: 92 },
+      { name: "VS Code", level: 95 },
+      { name: "Postman", level: 88 },
+    ],
+  },
+  {
+    title: "Design",
+    icon: <FaPalette />,
+    skills: [
+      { name: "Figma", level: 88 },
+      { name: "Canva", level: 92 },
+      { name: "UI / UX", level: 86 },
+      { name: "Responsive Design", level: 95 },
+    ],
+  },
+  {
+    title: "Mobile",
+    icon: <FaMobileAlt />,
+    skills: [
+      { name: "React Native", level: 72 },
+      { name: "Flutter", level: 65 },
+      { name: "PWA", level: 82 },
+      { name: "Responsive Apps", level: 90 },
+    ],
+  },
 ];
+
+function SkillBar({ name, level }) {
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true });
+
+  const [progress, setProgress] = useState(0);
+
+  useEffect(() => {
+    if (!isInView) return;
+
+    let current = 0;
+
+    const timer = setInterval(() => {
+      current++;
+
+      if (current >= level) {
+        current = level;
+        clearInterval(timer);
+      }
+
+      setProgress(current);
+    }, 15);
+
+    return () => clearInterval(timer);
+  }, [isInView, level]);
+
+  return (
+    <div ref={ref}>
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "space-between",
+          marginBottom: "8px",
+        }}
+      >
+        <span
+          style={{
+            color: "#4B5563",
+            fontWeight: 500,
+          }}
+        >
+          {name}
+        </span>
+
+        <span
+          style={{
+            color: "#002854",
+            fontWeight: 600,
+          }}
+        >
+          {progress}%
+        </span>
+      </div>
+
+      <div
+        style={{
+          width: "100%",
+          height: "8px",
+          borderRadius: "999px",
+          background: "#ECE8F8",
+          overflow: "hidden",
+        }}
+      >
+        <motion.div
+          initial={{ width: 0 }}
+          animate={{ width: `${progress}%` }}
+          transition={{ duration: 0.25 }}
+          style={{
+            height: "100%",
+            borderRadius: "999px",
+            background:
+              "linear-gradient(to right, #A8D8EA, #B9A8F8, #F5BFD6)",
+          }}
+        />
+      </div>
+    </div>
+  );
+}
 
 const About = () => {
   return (
     <section
+      id="skills"
       style={{
-        display: "flex",
-        justifyContent: "space-between",
-        alignItems: "center",
-        height: "100vh",
-        padding: "0 50px",
-        position: "relative",
-        background: "#ffffff",
-        overflow: "hidden",
+        // minHeight: "100vh",
+        // background: "#FFF9F4",
+        padding: "96px 24px",
       }}
     >
-      {/* Heading */}
       <div
         style={{
-          position: "absolute",
-          top: 60,
-          left: 100,
-          fontSize: "1.5rem",
-          fontFamily: "'Dosis', sans-serif",
-          fontWeight: "bold",
+          maxWidth: "1280px",
+          margin: "0 auto",
         }}
       >
-        <h1>About Me :</h1>
-      </div>
+        {/* Heading */}
+        <motion.div
+          initial={{ opacity: 0, y: -35 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+        >
+          <h2
+            style={{
+              textAlign: "center",
+              fontFamily: "Georgia, serif",
+              fontSize: "48px",
+              fontWeight: "700",
+              color: "#002854",
+              margin: 0,
+            }}
+          >
+            Skills & Expertise
+          </h2>
 
-      {/* Name box */}
-      <div
-        style={{
-          width: 290,
-          height: 250,
-          position: "absolute",
-          background: "#C6E7FA",
-          top: 170,
-          left: 350,
-        }}
-      >
+          <p
+            style={{
+              textAlign: "center",
+              color: "#6B7280",
+              marginTop: "16px",
+              fontSize: "18px",
+              fontFamily: "Georgia, serif",
+            }}
+          >
+            Technologies and tools I work with
+          </p>
+        </motion.div>
+
+        {/* Cards */}
         <div
           style={{
-            width: 130,
-            position: "relative",
-            top: 70,
-            left: 80,
-            background: "#ddd",
-            borderRadius: "50%",
-            aspectRatio: "1",
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-            fontSize: 40,
+            display: "grid",
+            gridTemplateColumns: "repeat(auto-fit, minmax(340px, 1fr))",
+            gap: "32px",
+            marginTop: "64px",
           }}
         >
-          🧑‍💻
+          {skillCategories.map((category, index) => (
+            <motion.div
+              key={category.title}
+              initial={{ opacity: 0, y: 50 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{
+                duration: 0.5,
+                delay: index * 0.08,
+              }}
+              whileHover={{
+                y: -8,
+                scale: 1.02,
+              }}
+              style={{
+                background: "#F8F5FF",
+                borderRadius: "24px",
+                border: "1px solid #E7E1FB",
+                padding: "28px",
+                transition: "all 0.3s ease",
+              }}
+            >
+              <div
+                style={{
+                  display: "flex",
+                  alignItems: "center",
+                  gap: "16px",
+                  marginBottom: "32px",
+                }}
+              >
+                <div
+                  style={{
+                    width: "48px",
+                    height: "48px",
+                    borderRadius: "12px",
+                    background: "#ECE5FF",
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    color: "#002854",
+                    fontSize: "22px",
+                  }}
+                >
+                  {category.icon}
+                </div>
+
+                <h3
+                  style={{
+                    fontSize: "28px",
+                    fontWeight: 600,
+                    fontFamily: "Georgia, serif",
+                    color: "#383838",
+                    margin: 0,
+                  }}
+                >
+                  {category.title}
+                </h3>
+              </div>
+
+              <div
+                style={{
+                  display: "flex",
+                  flexDirection: "column",
+                  gap: "24px",
+                }}
+              >
+                {category.skills.map((skill) => (
+                  <SkillBar
+                    key={skill.name}
+                    name={skill.name}
+                    level={skill.level}
+                  />
+                ))}
+              </div>
+            </motion.div>
+          ))}
         </div>
-        <h2
-          style={{
-            position: "absolute",
-            top: 170,
-            fontFamily: "'Dosis', sans-serif",
-            fontWeight: 600,
-            color: "rgb(61,61,61)",
-            fontSize: "large",
-          }}
-        >
-          <span style={{ position: "relative", left: 80 }}>SHAILJA</span>
-          <br />
-          <span style={{ position: "relative", left: 103 }}>KHANDAL</span>
-        </h2>
-      </div>
-
-      {/* UI/UX box */}
-      <div
-        style={{
-          width: 290,
-          height: 250,
-          position: "absolute",
-          background: "#C6E7FA",
-          top: 430,
-          left: 350,
-        }}
-      >
-        <h2
-          style={{
-            position: "absolute",
-            bottom: 90,
-            fontFamily: "'Dosis', sans-serif",
-            fontWeight: 600,
-            left: 50,
-          }}
-        >
-          <span style={{ color: "rgb(61,61,61)", fontSize: "3rem", display: "block" }}>
-            UI/UX
-          </span>
-          <span style={{ fontSize: "2.5rem", color: "black", display: "block" }}>
-            DESIGNER
-          </span>
-        </h2>
-      </div>
-
-      {/* Frontend Dev box */}
-      <div
-        style={{
-          width: 290,
-          height: 250,
-          position: "absolute",
-          background: "#d8b5f3",
-          top: 300,
-          left: 647,
-        }}
-      >
-        <h2
-          style={{
-            position: "absolute",
-            bottom: 90,
-            fontFamily: "'Dosis', sans-serif",
-            fontWeight: 600,
-            left: 50,
-          }}
-        >
-          <span
-            style={{ color: "rgb(252,248,248)", fontSize: "1.8rem", display: "block" }}
-          >
-            FRONTEND
-          </span>
-          <span
-            style={{ fontSize: "1.8rem", color: "rgb(61,61,61)", display: "block" }}
-          >
-            DEVELOPER
-          </span>
-        </h2>
-      </div>
-
-      {/* Blank accent box */}
-      <div
-        style={{
-          width: 290,
-          height: 250,
-          position: "absolute",
-          background: "#C6E7FA",
-          top: 450,
-          left: 947,
-        }}
-      />
-
-      {/* Currently Focus */}
-      <div
-        style={{
-          fontFamily: "'Dosis', sans-serif",
-          position: "absolute",
-          top: 200,
-          left: 680,
-          fontWeight: 700,
-        }}
-      >
-        <span style={{ fontSize: "large", display: "block" }}>CURRENTLY FOCUS:</span>
-        <span style={{ fontSize: "1.5rem", color: "rgb(61,61,61)", display: "block" }}>
-          BACKEND
-        </span>
-        <span style={{ fontSize: "1.5rem", color: "rgb(61,61,61)", display: "block" }}>
-          ENGINEERING
-        </span>
-      </div>
-
-      {/* Problem Solving */}
-      <div
-        style={{
-          fontFamily: "'Dosis', sans-serif",
-          position: "absolute",
-          bottom: 100,
-          left: 680,
-          fontWeight: 700,
-        }}
-      >
-        <span style={{ fontSize: "large", display: "block" }}>WITH ABILITY OF</span>
-        <span style={{ fontSize: "1.5rem", color: "rgb(61,61,61)", display: "block" }}>
-          PROBLEM SOLVING
-        </span>
-      </div>
-
-      {/* Vertical FRAMEWORKS label */}
-      <div
-        style={{
-          fontFamily: "'Train One', system-ui",
-          fontSize: "4rem",
-          transform: "rotate(90deg)",
-          transformOrigin: "left top",
-          position: "absolute",
-          top: 170,
-          left: 1080,
-        }}
-      >
-        FRAMEWORKS
-      </div>
-
-      {/* Tech stack list */}
-      <div
-        style={{
-          display: "flex",
-          fontFamily: "'Dosis', sans-serif",
-          flexDirection: "column",
-          position: "relative",
-          top: -60,
-          left: 1050,
-          gap: 2,
-        }}
-      >
-        {stackItems.map((item, i) => (
-          <span
-            key={i}
-            style={{ color: "#555", fontWeight: "bold", textAlign: "center", fontSize: item.size }}
-          >
-            {item.label}
-          </span>
-        ))}
       </div>
     </section>
   );
 };
+
 
 export default About;

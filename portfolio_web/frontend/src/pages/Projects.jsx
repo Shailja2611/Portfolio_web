@@ -1,194 +1,340 @@
 import { useState } from "react";
-import PunchDots from "../components/PunchDots";
-
-const gridBoxStyle = {
-  width: 500,
-  height: 550,
-  background: "white",
-  backgroundImage:
-    "linear-gradient(to right, rgba(0,123,255,0.5) 1px, transparent 1px), linear-gradient(to bottom, rgba(0,123,255,0.5) 1px, transparent 1px)",
-  backgroundSize: "40px 40px",
-  boxShadow: "0 0 10px rgba(0,0,0,0.1)",
-  position: "absolute",
-  borderRadius: 10,
-};
-
-const smallBoxStyle = {
-  width: 130,
-  height: 50,
-  background: "white",
-  border: "2px solid black",
-  borderTopLeftRadius: 5,
-  borderBottomRightRadius: 5,
-  boxShadow: "8px 8px 0 #f0ed67",
-  display: "flex",
-  justifyContent: "center",
-  alignItems: "center",
-  fontFamily: "'Dosis', sans-serif",
-  fontWeight: 700,
-  fontSize: "larger",
-};
+import { motion } from "framer-motion";
+import {
+  FaHandPointUp,
+  FaHandPeace,
+  FaHandSpock,
+  FaHandPaper,
+  FaThumbsUp,
+  FaHandPointRight,
+} from "react-icons/fa";
 
 const projects = [
   {
     id: 1,
-    label: "PROJECT-1",
-    title: "SPACE QUIZ",
-    emoji: "🚀",
-    bg: "#8ecae6",
-    desc: "The Quiz Website is an interactive platform where users answer 10 random questions each time they log in. After the quiz, a celebration card shows their name, score, and rank, followed by a redirect to the leaderboard. The platform focuses on user engagement, competitive learning, and smooth UI/UX.",
+    title: "Space Quiz",
+    category: "React • Node",
+    image:
+      "https://images.unsplash.com/photo-1518770660439-4636190af475?w=600",
     link: "https://github.com/Shailja2611",
-    gridLeft: 200,
-    cardLeft: 220,
-    punchSide: { left: 450, top: 25 },
-    labelLeft: 260,
   },
   {
     id: 2,
-    label: "PROJECT-2",
-    title: "DIET TRACKER",
-    emoji: "🥗",
-    bg: "#a8dadc",
-    desc: "A clean, intuitive design that helps users easily log meals, track calories, and monitor nutrition goals. The UI uses a minimalist layout with clear visuals and progress indicators. UX focuses on quick food entry, personalized insights, and motivational features like reminders and trend charts.",
-    link: "https://www.figma.com/proto/YEUDTyZ79ImBBs9fp34y0G/Untitled?node-id=53-15&t=5IRQJ4AgdR2BaLwi-1&scaling=scale-down&content-scaling=fixed&page-id=0%3A1&starting-point-node-id=53%3A15",
-    gridLeft: 800,
-    cardLeft: 870,
-    punchSide: { right: 450, top: 25 },
-    labelLeft: 335,
+    title: "Diet Tracker",
+    category: "UI / UX",
+    image:
+      "https://images.unsplash.com/photo-1490645935967-10de6ba17061?w=600",
+    link: "https://github.com/Shailja2611",
+  },
+  {
+    id: 3,
+    title: "SEO Rank Tracker",
+    category: "Full Stack",
+    image:
+      "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=600",
+    link: "https://github.com/Shailja2611",
+  },
+  {
+    id: 4,
+    title: "Doctor Booking",
+    category: "MERN",
+    image:
+      "https://images.unsplash.com/photo-1576091160550-2173dba999ef?w=600",
+    link: "https://github.com/Shailja2611",
+  },
+  {
+    id: 5,
+    title: "Portfolio",
+    category: "Frontend",
+    image:
+      "https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=600",
+    link: "https://github.com/Shailja2611",
+  },
+  {
+    id: 6,
+    title: "Weather App",
+    category: "React",
+    image:
+      "https://images.unsplash.com/photo-1506744038136-46273834b3fb?w=600",
+    link: "https://github.com/Shailja2611",
   },
 ];
 
-const Projects = () => {
-  const [hovered, setHovered] = useState({ 1: false, 2: false });
+const heights = [360, 470, 390, 500, 410, 470];
+
+const fingers = [
+  <FaHandPointUp />,
+  <FaHandPeace />,
+  <FaHandSpock />,
+  <FaHandPaper />,
+  <FaThumbsUp />,
+  <FaHandPointRight />,
+];
+
+export default function Projects() {
+  const [hovered, setHovered] = useState(null);
 
   return (
     <section
       style={{
-        display: "flex",
-        justifyContent: "space-between",
-        alignItems: "center",
-        height: "100vh",
-        padding: "0 50px",
-        position: "relative",
-        background: "#eebfe1",
+        minHeight: "100vh",
+        width: "100%",
         overflow: "hidden",
+        position: "relative",
+        backgroundImage: `
+        linear-gradient(rgba(255,255,255,.55) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,.55) 1px, transparent 1px)
+      `,
+
+        backgroundSize: "42px 42px",
       }}
     >
-      <h1
+      {/* soft glow */}
+
+      <div
+        style={{
+          position: "absolute",
+          width: 600,
+          height: 600,
+          borderRadius: "50%",
+          background: "rgba(255,255,255,.35)",
+          filter: "blur(120px)",
+          top: -200,
+          left: -200,
+        }}
+      />
+
+      <div
+        style={{
+          position: "absolute",
+          width: 500,
+          height: 500,
+          borderRadius: "50%",
+          background: "rgba(255,255,255,.25)",
+          filter: "blur(100px)",
+          bottom: -150,
+          right: -150,
+        }}
+      />
+
+      {/* Heading */}
+
+      <motion.h1
+        initial={{
+          opacity: 0,
+          y: -40,
+        }}
+        whileInView={{
+          opacity: 1,
+          y: 0,
+        }}
+        transition={{
+          duration: .7,
+        }}
         style={{
           textAlign: "center",
-          position: "absolute",
-          top: 30,
-          left: 580,
-          fontSize: "5rem",
-          fontFamily: "'Viga', sans-serif",
-          fontWeight: "bold",
+          fontSize: "48px",
+          marginTop: 60,
+          marginBottom: 70,
+          fontFamily: "Georgia, serif",
+          letterSpacing: 5,
+          color: "#002854",
         }}
       >
         PROJECTS
-      </h1>
+      </motion.h1>
 
-      {projects.map((p) => (
-        <div key={p.id}>
-          {/* Grid info card */}
-          <div style={{ ...gridBoxStyle, top: 160, left: p.gridLeft }}>
-            <PunchDots style={p.punchSide} />
-            <div
-              style={{
-                ...smallBoxStyle,
-                position: "relative",
-                left: p.labelLeft,
-                top: 120,
-              }}
-            >
-              {p.label}
-            </div>
-            <div
-              style={{
-                position: "relative",
-                top: 270,
-                left: 100,
-                maxWidth: 350,
-                fontSize: "large",
-                fontWeight: 500,
-                fontFamily: "'Dosis', sans-serif",
-                lineHeight: "30px",
-              }}
-            >
-              {p.desc}
-            </div>
-          </div>
+      {/* Gallery */}
 
-          {/* Hover image card */}
-          <div
-            onMouseEnter={() => setHovered((h) => ({ ...h, [p.id]: true }))}
-            onMouseLeave={() => setHovered((h) => ({ ...h, [p.id]: false }))}
-            style={{
-              width: 200,
-              height: 280,
-              position: "absolute",
-              top: 190,
-              left: p.cardLeft,
-              borderRadius: 15,
-              overflow: "hidden",
-            }}
-          >
-            <div
-              style={{
-                width: "100%",
-                height: "100%",
-                background: p.bg,
-                borderRadius: 15,
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
-                fontSize: "4rem",
-                filter: hovered[p.id] ? "brightness(0.6)" : "none",
-                transition: "0.5s ease",
-              }}
-            >
-              {p.emoji}
-            </div>
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "flex-start",
+          gap: 24,
+          paddingBottom: 80,
+          flexWrap: "wrap",
+          paddingInline: 40,
+        }}
+      >
+      {projects.map((project, index) => (
+  <motion.div
+    key={project.id}
+    initial={{
+      opacity: 0,
+      y: 80,
+    }}
+    whileInView={{
+      opacity: 1,
+      y: 0,
+    }}
+    transition={{
+      duration: 0.7,
+      delay: index * 0.15,
+    }}
+    viewport={{ once: true }}
+    style={{
+      display: "flex",
+      flexDirection: "column",
+      alignItems: "center",
+      width: 210,
+    }}
+  >
+    {/* Animated Finger */}
 
-            {hovered[p.id] && (
-              <div
-                style={{
-                  position: "absolute",
-                  top: 0,
-                  left: 0,
-                  width: "100%",
-                  height: "100%",
-                  borderRadius: 15,
-                  background: "rgba(0,0,0,0.5)",
-                  display: "flex",
-                  flexDirection: "column",
-                  justifyContent: "center",
-                  alignItems: "center",
-                  color: "white",
-                }}
-              >
-                <h3 style={{ fontFamily: "'Dosis', sans-serif" }}>{p.title}</h3>
-                <button
-                  onClick={() => window.open(p.link, "_blank")}
-                  style={{
-                    marginTop: 10,
-                    padding: "8px 16px",
-                    background: "#fff",
-                    color: "#333",
-                    border: "none",
-                    borderRadius: 5,
-                    cursor: "pointer",
-                  }}
-                >
-                  View Project
-                </button>
-              </div>
-            )}
-          </div>
-        </div>
-      ))}
+    <motion.div
+      animate={{
+        x: [-10, 10, -10],
+        rotate: [-8, 8, -8],
+        y: [0, -5, 0],
+      }}
+      transition={{
+        duration: 1.8,
+        repeat: Infinity,
+        ease: "easeInOut",
+        delay: index * 0.25,
+      }}
+      style={{
+        fontSize: 35,
+        marginBottom: 10,
+        color: "#002854",
+      }}
+    >
+      {fingers[index]}
+    </motion.div>
+
+    {/* Number */}
+
+    <div
+      style={{
+        fontSize: 18,
+        fontWeight: "700",
+        fontFamily: "Georgia, serif",
+        marginBottom: 25,
+        color: "#222",
+      }}
+    >
+      {String(project.id).padStart(2, "0")}
+    </div>
+
+    {/* Card */}
+
+    <motion.div
+      whileHover={{
+        y: -15,
+        scale: 1.04,
+        rotate: -1,
+      }}
+      transition={{
+        type: "spring",
+        stiffness: 180,
+      }}
+      onMouseEnter={() => setHovered(project.id)}
+      onMouseLeave={() => setHovered(null)}
+      style={{
+        width: 200,
+        height: heights[index],
+        borderRadius: 30,
+        overflow: "hidden",
+        cursor: "pointer",
+        position: "relative",
+        boxShadow: "0 20px 45px rgba(0,0,0,.18)",
+        background: "#ddd",
+      }}
+    >
+      {/* Image */}
+
+      <img
+        src={project.image}
+        alt={project.title}
+        style={{
+          width: "100%",
+          height: "100%",
+          objectFit: "cover",
+          transition: ".5s",
+          transform:
+            hovered === project.id ? "scale(1.1)" : "scale(1)",
+        }}
+      />
+
+      {/* Overlay */}
+
+      <div
+        style={{
+          position: "absolute",
+          inset: 0,
+          background:
+            hovered === project.id
+              ? "rgba(0,0,0,.45)"
+              : "rgba(0,0,0,0)",
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+          transition: ".35s",
+        }}
+      >
+        <motion.button
+          initial={{
+            opacity: 0,
+            y: 20,
+          }}
+          animate={{
+            opacity: hovered === project.id ? 1 : 0,
+            y: hovered === project.id ? 0 : 20,
+          }}
+          transition={{
+            duration: .25,
+          }}
+          onClick={() => window.open(project.link, "_blank")}
+          style={{
+            padding: "12px 25px",
+            border: "none",
+            borderRadius: 30,
+            background: "#fff",
+            fontWeight: "700",
+            cursor: "pointer",
+            fontSize: 15,
+          }}
+        >
+          View Project
+        </motion.button>
+      </div>
+    </motion.div>
+
+    {/* Title */}
+
+    <div
+      style={{
+        marginTop: 18,
+        width: "100%",
+      }}
+    >
+      <h2
+        style={{
+          margin: 0,
+          fontFamily: "Georgia, serif",
+          fontSize: 22,
+          color: "#002854",
+        }}
+      >
+        {project.title}
+      </h2>
+
+      <p
+        style={{
+          marginTop: 8,
+          color: "#666",
+          fontSize: 15,
+          fontFamily: "Georgia, serif",
+          letterSpacing: 1,
+        }}
+      >
+        {project.category}
+      </p>
+    </div>
+  </motion.div>
+))}
+      </div>
     </section>
   );
-};
-
-export default Projects;
+}
