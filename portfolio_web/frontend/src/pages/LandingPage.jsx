@@ -2,7 +2,7 @@ import HeroImage from "../components/HeroImage";
 
 export default function LandingPage() {
   return (
-    <section id="home" className="hero">
+    <section id="home" className="landing-hero">
       {/* stars logo */}
       <div className="star star--sm star--1">
         <span>✦</span>
@@ -35,8 +35,8 @@ export default function LandingPage() {
       {/* small White Card */}
       <div className="accent-card" />
 
-      <style jsx="true">{`
-        .hero {
+      <style>{`
+        .landing-hero {
           width: 100%;
           height: 100vh;
           height: 100dvh; /* respects mobile browser chrome */
@@ -152,7 +152,7 @@ export default function LandingPage() {
 
         /* ---- Mobile ---- */
         @media (max-width: 768px) {
-          .hero {
+          .landing-hero {
             overflow-x: hidden;
           }
 

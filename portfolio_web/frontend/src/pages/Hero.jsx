@@ -6,7 +6,7 @@ const Hero = () => {
   };
 
   return (
-    <section className="hero">
+    <section id="hero" className="hero">
       {/* Pink side panel — anchored to the right edge, fills remaining width */}
       <div className="backdrop" />
 
@@ -77,7 +77,7 @@ const Hero = () => {
         <span className="shape shape--4" />
       </div>
 
-      <style jsx>{`
+      <style>{`
         .hero {
           position: relative;
           min-height: 100vh;

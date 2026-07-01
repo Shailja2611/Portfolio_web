@@ -29,7 +29,7 @@ const Contact = () => {
     e.preventDefault();
     setStatus("loading");
     try {
-      const res = await fetch("http://localhost:5001/submit", {
+      const res = await fetch("/submit", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(formData),
@@ -47,19 +47,7 @@ const Contact = () => {
   };
 
   return (
-    <section
-      id="contact"
-      style={{
-        display: "flex",
-        justifyContent: "center",
-        alignItems: "center",
-        height: "100vh",
-        padding: "50px",
-        position: "relative",
-        // background: "#ffffff",
-        overflow: "hidden",
-      }}
-    >
+    <section id="contact" className="contact">
       {/* Floating decorative shapes */}
       {/* {decoratives.map((d, i) => (
         <div key={i} style={{ position: "absolute", ...floatAnim, ...d }} />
@@ -70,146 +58,111 @@ const Contact = () => {
       <div style={{ width: 0, height: 0, borderLeft: "15px solid transparent", borderRight: "15px solid transparent", borderTop: "25px solid #e64c4c", position: "absolute", left: 400, top: 30, ...floatAnim }} />
  */}
 
-      <div>
+      <div className="contact__wrap">
         {/* Left info */}
-        <div
+        <div className="contact__info">
+          <p
             style={{
-            position:"absolute",
-            left:170,
-            top:210,
-            maxWidth:"520px"
-            }}
-            >
-
-            <p
-            style={{
-            color:"#002854",
-            letterSpacing:"3px",
-            fontWeight:"700",
-            fontSize:"30px",
-            marginBottom:"5px"
-            }}
-            >
-            CONTACT
-            </p>
-
-            <h1
-            style={{
-            fontSize:"44px",
-            fontWeight:"800",
-            lineHeight:"1.05",
-            color:"#111",
-            marginBottom:"3px"
-            }}
-            >
-            Let's work
-            together.
-            </h1>
-
-            <p
-            style={{
-            fontSize:"18px",
-            lineHeight:"1.8",
-            color:"#666"
-            }}
-            >
-            Have a project in mind, want to collaborate,
-            or just want to say hi?
-            Drop me a message and I'll get back to you.
-            </p>
-
-            </div>
-            {/* icons for socials and mail */}
-        <div
-        style={{
-          display: "flex",
-          gap: "18px",
-          position: "absolute",
-          left: 170,
-          top: 330,
-          marginTop: "50px",
-        }}
-      >
-        {[
-          {
-            icon: <FaGithub />,
-            link: "https://github.com/Shailja2611",
-          },
-          {
-            icon: <FaLinkedinIn />,
-            link: "https://www.linkedin.com/in/shailja-khandal-a10a232b3/",
-          },
-          {
-            icon: <FaXTwitter />,
-            link: "https://twitter.com/",
-          },
-          {
-            icon: <FaInstagram />,
-            link: "https://instagram.com/",
-          },
-          {
-            icon: <FaEnvelope />,
-            link: "mailto:shailjakhandal555@gmail.com",
-          },
-        ].map((item, index) => (
-          <a
-            key={index}
-            href={item.link}
-            target="_blank"
-            rel="noreferrer"
-            style={{
-              width: "38px",
-              height: "38px",
-              border: "1px solid #e5e7eb",
-              borderRadius: "10px",
-              display: "flex",
-              justifyContent: "center",
-              alignItems: "center",
-              fontSize: "24px",
-              color: "#555",
-              background: "#fff",
-              textDecoration: "none",
-              transition: "all .3s ease",
-              boxShadow: "0 8px 20px rgba(0,0,0,.06)",
-            }}
-            onMouseEnter={(e) => {
-              e.currentTarget.style.background = "#4F7DF3";
-              e.currentTarget.style.color = "#fff";
-              e.currentTarget.style.transform = "translateY(-6px)";
-              e.currentTarget.style.boxShadow =
-                "0 15px 30px rgba(79,125,243,.35)";
-            }}
-            onMouseLeave={(e) => {
-              e.currentTarget.style.background = "#fff";
-              e.currentTarget.style.color = "#555";
-              e.currentTarget.style.transform = "translateY(0)";
-              e.currentTarget.style.boxShadow =
-                "0 8px 20px rgba(0,0,0,.06)";
+              color: "#002854",
+              letterSpacing: "3px",
+              fontWeight: "700",
+              fontSize: "clamp(20px, 3vw, 30px)",
+              marginBottom: "5px",
             }}
           >
-            {item.icon}
-          </a>
-        ))}
-      </div>
+            CONTACT
+          </p>
+
+          <h1
+            style={{
+              fontSize: "clamp(28px, 5vw, 44px)",
+              fontWeight: "800",
+              lineHeight: "1.05",
+              color: "#111",
+              marginBottom: "3px",
+            }}
+          >
+            Let's work together.
+          </h1>
+
+          <p
+            style={{
+              fontSize: "clamp(15px, 2vw, 18px)",
+              lineHeight: "1.8",
+              color: "#666",
+            }}
+          >
+            Have a project in mind, want to collaborate, or just want to say
+            hi? Drop me a message and I'll get back to you.
+          </p>
+
+          {/* icons for socials and mail */}
+          <div className="contact__socials">
+            {[
+              {
+                icon: <FaGithub />,
+                link: "https://github.com/Shailja2611",
+              },
+              {
+                icon: <FaLinkedinIn />,
+                link: "https://www.linkedin.com/in/shailja-khandal-a10a232b3/",
+              },
+              {
+                icon: <FaXTwitter />,
+                link: "https://twitter.com/",
+              },
+              {
+                icon: <FaInstagram />,
+                link: "https://instagram.com/",
+              },
+              {
+                icon: <FaEnvelope />,
+                link: "mailto:shailjakhandal555@gmail.com",
+              },
+            ].map((item, index) => (
+              <a
+                key={index}
+                href={item.link}
+                target="_blank"
+                rel="noreferrer"
+                style={{
+                  width: "38px",
+                  height: "38px",
+                  border: "1px solid #e5e7eb",
+                  borderRadius: "10px",
+                  display: "flex",
+                  justifyContent: "center",
+                  alignItems: "center",
+                  fontSize: "24px",
+                  color: "#555",
+                  background: "#fff",
+                  textDecoration: "none",
+                  transition: "all .3s ease",
+                  boxShadow: "0 8px 20px rgba(0,0,0,.06)",
+                }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.background = "#4F7DF3";
+                  e.currentTarget.style.color = "#fff";
+                  e.currentTarget.style.transform = "translateY(-6px)";
+                  e.currentTarget.style.boxShadow =
+                    "0 15px 30px rgba(79,125,243,.35)";
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.background = "#fff";
+                  e.currentTarget.style.color = "#555";
+                  e.currentTarget.style.transform = "translateY(0)";
+                  e.currentTarget.style.boxShadow =
+                    "0 8px 20px rgba(0,0,0,.06)";
+                }}
+              >
+                {item.icon}
+              </a>
+            ))}
+          </div>
+        </div>
 
         {/* Right form */}
-        <form
-          onSubmit={handleSubmit}
-          style={{
-            background: "#ffffff",
-            padding: "40px",
-            borderRadius: "28px",
-            boxShadow:
-            "0 30px 60px rgba(0,0,0,.18)",
-            border:"1px solid rgba(0,0,0,.05)",
-            width: 450,
-            position: "relative",
-            left: 270,
-            display: "flex",
-            flexDirection: "column",
-            gap: 4,
-          }}
-        >
+        <form onSubmit={handleSubmit} className="contact__form">
           {[
             { label: "First name:", id: "fname", type: "text" },
             { label: "Last name:", id: "lname", type: "text" },
@@ -261,6 +214,77 @@ const Contact = () => {
           </button>
         </form>
       </div>
+
+      <style>{`
+        .contact {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          min-height: 100vh;
+          padding: 120px 24px 80px;
+          position: relative;
+          overflow: hidden;
+        }
+
+        .contact__wrap {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          gap: 60px;
+          width: 100%;
+          max-width: 1100px;
+          flex-wrap: wrap;
+        }
+
+        .contact__info {
+          flex: 1 1 380px;
+          max-width: 520px;
+        }
+
+        .contact__socials {
+          display: flex;
+          gap: 18px;
+          flex-wrap: wrap;
+          margin-top: 30px;
+        }
+
+        .contact__form {
+          flex: 1 1 380px;
+          max-width: 450px;
+          width: 100%;
+          background: #ffffff;
+          padding: 40px;
+          border-radius: 28px;
+          box-shadow: 0 30px 60px rgba(0, 0, 0, 0.18);
+          border: 1px solid rgba(0, 0, 0, 0.05);
+          display: flex;
+          flex-direction: column;
+          gap: 4px;
+          box-sizing: border-box;
+        }
+
+        @media (max-width: 768px) {
+          .contact {
+            padding: 100px 20px 60px;
+          }
+          .contact__wrap {
+            flex-direction: column;
+            gap: 40px;
+          }
+          .contact__info {
+            text-align: center;
+          }
+          .contact__socials {
+            justify-content: center;
+          }
+        }
+
+        @media (max-width: 420px) {
+          .contact__form {
+            padding: 24px;
+          }
+        }
+      `}</style>
     </section>
   );
 };

@@ -6,8 +6,16 @@
   box-sizing: border-box;
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 body {
   overflow-x: hidden;
+}
+
+section[id] {
+  scroll-margin-top: 90px;
 }
 
 @keyframes float {

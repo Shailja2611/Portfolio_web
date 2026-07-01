@@ -1,5 +1,6 @@
-const DotGrid = ({ style }) => (
+const DotGrid = ({ style, className }) => (
   <div
+    className={className}
     style={{
       display: "grid",
       gridTemplateColumns: "repeat(5, 10px)",

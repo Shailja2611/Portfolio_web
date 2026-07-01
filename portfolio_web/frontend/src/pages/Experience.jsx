@@ -63,7 +63,7 @@ const Experience = () => {
         </div>
       </div>
 
-      <style jsx>{`
+      <style>{`
         .experience {
           min-height: 100vh;
           color: #002854;

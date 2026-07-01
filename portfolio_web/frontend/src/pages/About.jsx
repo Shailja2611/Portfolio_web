@@ -153,11 +153,11 @@ function SkillBar({ name, level }) {
 const About = () => {
   return (
     <section
-      id="skills"
+      id="about"
       style={{
         // minHeight: "100vh",
         // background: "#FFF9F4",
-        padding: "96px 24px",
+        padding: "clamp(48px, 10vw, 96px) 24px",
       }}
     >
       <div
@@ -176,7 +176,7 @@ const About = () => {
             style={{
               textAlign: "center",
               fontFamily: "Georgia, serif",
-              fontSize: "48px",
+              fontSize: "clamp(28px, 5vw, 48px)",
               fontWeight: "700",
               color: "#002854",
               margin: 0,
@@ -202,7 +202,7 @@ const About = () => {
         <div
           style={{
             display: "grid",
-            gridTemplateColumns: "repeat(auto-fit, minmax(340px, 1fr))",
+            gridTemplateColumns: "repeat(auto-fit, minmax(min(340px, 100%), 1fr))",
             gap: "32px",
             marginTop: "64px",
           }}

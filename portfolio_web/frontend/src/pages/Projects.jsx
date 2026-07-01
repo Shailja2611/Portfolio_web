@@ -1,340 +1,222 @@
-import { useState } from "react";
-import { motion } from "framer-motion";
-import {
-  FaHandPointUp,
-  FaHandPeace,
-  FaHandSpock,
-  FaHandPaper,
-  FaThumbsUp,
-  FaHandPointRight,
-} from "react-icons/fa";
+import HeroImage from "../components/HeroImage";
 
-const projects = [
-  {
-    id: 1,
-    title: "Space Quiz",
-    category: "React • Node",
-    image:
-      "https://images.unsplash.com/photo-1518770660439-4636190af475?w=600",
-    link: "https://github.com/Shailja2611",
-  },
-  {
-    id: 2,
-    title: "Diet Tracker",
-    category: "UI / UX",
-    image:
-      "https://images.unsplash.com/photo-1490645935967-10de6ba17061?w=600",
-    link: "https://github.com/Shailja2611",
-  },
-  {
-    id: 3,
-    title: "SEO Rank Tracker",
-    category: "Full Stack",
-    image:
-      "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=600",
-    link: "https://github.com/Shailja2611",
-  },
-  {
-    id: 4,
-    title: "Doctor Booking",
-    category: "MERN",
-    image:
-      "https://images.unsplash.com/photo-1576091160550-2173dba999ef?w=600",
-    link: "https://github.com/Shailja2611",
-  },
-  {
-    id: 5,
-    title: "Portfolio",
-    category: "Frontend",
-    image:
-      "https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=600",
-    link: "https://github.com/Shailja2611",
-  },
-  {
-    id: 6,
-    title: "Weather App",
-    category: "React",
-    image:
-      "https://images.unsplash.com/photo-1506744038136-46273834b3fb?w=600",
-    link: "https://github.com/Shailja2611",
-  },
-];
-
-const heights = [360, 470, 390, 500, 410, 470];
-
-const fingers = [
-  <FaHandPointUp />,
-  <FaHandPeace />,
-  <FaHandSpock />,
-  <FaHandPaper />,
-  <FaThumbsUp />,
-  <FaHandPointRight />,
-];
-
-export default function Projects() {
-  const [hovered, setHovered] = useState(null);
-
+export default function LandingPage() {
   return (
-    <section
-      style={{
-        minHeight: "100vh",
-        width: "100%",
-        overflow: "hidden",
-        position: "relative",
-        backgroundImage: `
-        linear-gradient(rgba(255,255,255,.55) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(255,255,255,.55) 1px, transparent 1px)
-      `,
-
-        backgroundSize: "42px 42px",
-      }}
-    >
-      {/* soft glow */}
-
-      <div
-        style={{
-          position: "absolute",
-          width: 600,
-          height: 600,
-          borderRadius: "50%",
-          background: "rgba(255,255,255,.35)",
-          filter: "blur(120px)",
-          top: -200,
-          left: -200,
-        }}
-      />
-
-      <div
-        style={{
-          position: "absolute",
-          width: 500,
-          height: 500,
-          borderRadius: "50%",
-          background: "rgba(255,255,255,.25)",
-          filter: "blur(100px)",
-          bottom: -150,
-          right: -150,
-        }}
-      />
-
-      {/* Heading */}
-
-      <motion.h1
-        initial={{
-          opacity: 0,
-          y: -40,
-        }}
-        whileInView={{
-          opacity: 1,
-          y: 0,
-        }}
-        transition={{
-          duration: .7,
-        }}
-        style={{
-          textAlign: "center",
-          fontSize: "48px",
-          marginTop: 60,
-          marginBottom: 70,
-          fontFamily: "Georgia, serif",
-          letterSpacing: 5,
-          color: "#002854",
-        }}
-      >
-        PROJECTS
-      </motion.h1>
-
-      {/* Gallery */}
-
-      <div
-        style={{
-          display: "flex",
-          justifyContent: "center",
-          alignItems: "flex-start",
-          gap: 24,
-          paddingBottom: 80,
-          flexWrap: "wrap",
-          paddingInline: 40,
-        }}
-      >
-      {projects.map((project, index) => (
-  <motion.div
-    key={project.id}
-    initial={{
-      opacity: 0,
-      y: 80,
-    }}
-    whileInView={{
-      opacity: 1,
-      y: 0,
-    }}
-    transition={{
-      duration: 0.7,
-      delay: index * 0.15,
-    }}
-    viewport={{ once: true }}
-    style={{
-      display: "flex",
-      flexDirection: "column",
-      alignItems: "center",
-      width: 210,
-    }}
-  >
-    {/* Animated Finger */}
-
-    <motion.div
-      animate={{
-        x: [-10, 10, -10],
-        rotate: [-8, 8, -8],
-        y: [0, -5, 0],
-      }}
-      transition={{
-        duration: 1.8,
-        repeat: Infinity,
-        ease: "easeInOut",
-        delay: index * 0.25,
-      }}
-      style={{
-        fontSize: 35,
-        marginBottom: 10,
-        color: "#002854",
-      }}
-    >
-      {fingers[index]}
-    </motion.div>
-
-    {/* Number */}
-
-    <div
-      style={{
-        fontSize: 18,
-        fontWeight: "700",
-        fontFamily: "Georgia, serif",
-        marginBottom: 25,
-        color: "#222",
-      }}
-    >
-      {String(project.id).padStart(2, "0")}
-    </div>
-
-    {/* Card */}
-
-    <motion.div
-      whileHover={{
-        y: -15,
-        scale: 1.04,
-        rotate: -1,
-      }}
-      transition={{
-        type: "spring",
-        stiffness: 180,
-      }}
-      onMouseEnter={() => setHovered(project.id)}
-      onMouseLeave={() => setHovered(null)}
-      style={{
-        width: 200,
-        height: heights[index],
-        borderRadius: 30,
-        overflow: "hidden",
-        cursor: "pointer",
-        position: "relative",
-        boxShadow: "0 20px 45px rgba(0,0,0,.18)",
-        background: "#ddd",
-      }}
-    >
-      {/* Image */}
-
-      <img
-        src={project.image}
-        alt={project.title}
-        style={{
-          width: "100%",
-          height: "100%",
-          objectFit: "cover",
-          transition: ".5s",
-          transform:
-            hovered === project.id ? "scale(1.1)" : "scale(1)",
-        }}
-      />
-
-      {/* Overlay */}
-
-      <div
-        style={{
-          position: "absolute",
-          inset: 0,
-          background:
-            hovered === project.id
-              ? "rgba(0,0,0,.45)"
-              : "rgba(0,0,0,0)",
-          display: "flex",
-          justifyContent: "center",
-          alignItems: "center",
-          transition: ".35s",
-        }}
-      >
-        <motion.button
-          initial={{
-            opacity: 0,
-            y: 20,
-          }}
-          animate={{
-            opacity: hovered === project.id ? 1 : 0,
-            y: hovered === project.id ? 0 : 20,
-          }}
-          transition={{
-            duration: .25,
-          }}
-          onClick={() => window.open(project.link, "_blank")}
-          style={{
-            padding: "12px 25px",
-            border: "none",
-            borderRadius: 30,
-            background: "#fff",
-            fontWeight: "700",
-            cursor: "pointer",
-            fontSize: 15,
-          }}
-        >
-          View Project
-        </motion.button>
+    <section id="home" className="landing-hero">
+      {/* stars logo */}
+      <div className="star star--sm star--1">
+        <span>✦</span>
       </div>
-    </motion.div>
-
-    {/* Title */}
-
-    <div
-      style={{
-        marginTop: 18,
-        width: "100%",
-      }}
-    >
-      <h2
-        style={{
-          margin: 0,
-          fontFamily: "Georgia, serif",
-          fontSize: 22,
-          color: "#002854",
-        }}
-      >
-        {project.title}
-      </h2>
-
-      <p
-        style={{
-          marginTop: 8,
-          color: "#666",
-          fontSize: 15,
-          fontFamily: "Georgia, serif",
-          letterSpacing: 1,
-        }}
-      >
-        {project.category}
-      </p>
-    </div>
-  </motion.div>
-))}
+      <div className="star star--lg star--2">
+        <span>✦</span>
       </div>
+      <div className="star star--sm star--3">
+        <span>✦</span>
+      </div>
+
+      {/* image Card */}
+      <div className="photo-card">
+        {/* Swap this src for your real profile photo. */}
+        <HeroImage src="/Profile1.jpeg" alt="Portrait photo" />
+      </div>
+
+      {/* Repeated text behind card */}
+      <div className="repeat-text" aria-hidden="true">
+        <div className="repeat-text__line">PORTFOLIO</div>
+        <div className="repeat-text__line">PORTFOLIO</div>
+        <div className="repeat-text__line">PORTFOLIO</div>
+      </div>
+
+      {/* Main Text */}
+      <div className="main-text">
+        <h1>PORTFOLIO</h1>
+      </div>
+
+      {/* small White Card */}
+      <div className="accent-card" />
+
+      <style>{`
+        .landing-hero {
+          width: 100%;
+          height: 100vh;
+          height: 100dvh; /* respects mobile browser chrome */
+          position: relative;
+          overflow: hidden;
+          margin: 0;
+          padding: 0;
+        }
+
+        .star {
+          position: absolute;
+          display: flex;
+          align-items: center;
+          z-index: 3;
+          color: #fff57e;
+          pointer-events: none;
+        }
+        .star--sm span {
+          font-size: clamp(22px, 4vw, 44px);
+        }
+        .star--lg span {
+          font-size: clamp(32px, 6vw, 64px);
+        }
+        .star--1 {
+          left: 8.5%;
+          top: 37%;
+        }
+        .star--2 {
+          left: 9.5%;
+          top: 30%;
+        }
+        .star--3 {
+          left: 39%;
+          bottom: 13%;
+        }
+
+        .photo-card {
+          position: absolute;
+          left: 10%;
+          bottom: 15%;
+          width: 30%;
+          height: 60%;
+          background-color: #ffffff;
+          box-shadow: 0px 15px 40px rgba(0, 0, 0, 0.15);
+          overflow: hidden;
+          z-index: 2;
+        }
+
+        .repeat-text {
+          position: absolute;
+          left: 50%;
+          top: 34%;
+          transform: translateX(-50%);
+          z-index: 1;
+          pointer-events: none;
+          width: 100%;
+          text-align: center;
+        }
+        .repeat-text__line {
+          font-family: "Cinzel Decorative", serif;
+          font-size: clamp(2.2rem, 8vw, 6rem);
+          font-weight: 700;
+          color: transparent;
+          -webkit-text-stroke: 1.3px #fff265;
+          line-height: 1;
+          margin-top: 20px;
+          white-space: nowrap;
+        }
+
+        .main-text {
+          position: absolute;
+          top: 25%;
+          left: 50%;
+          transform: translate(-50%, -50%);
+          text-align: center;
+          z-index: 3;
+          width: 100%;
+          padding: 0 12px;
+        }
+        .main-text h1 {
+          font-family: "Cinzel Decorative", serif;
+          font-size: clamp(2.2rem, 8vw, 6rem);
+          font-weight: 700;
+          color: #f1e8c0;
+          margin: 0;
+          line-height: 1;
+        }
+
+        .accent-card {
+          position: absolute;
+          right: 20%;
+          bottom: 35%;
+          width: 13%;
+          height: 20%;
+          background-color: #ffffff;
+          box-shadow: 0px 15px 40px rgba(0, 0, 0, 0.15);
+          z-index: 2;
+        }
+
+        /* ---- Tablet ---- */
+        @media (max-width: 1024px) {
+          .photo-card {
+            left: 8%;
+            width: 38%;
+            height: 55%;
+          }
+          .accent-card {
+            right: 12%;
+            width: 18%;
+            height: 16%;
+          }
+        }
+
+        /* ---- Mobile ---- */
+        @media (max-width: 768px) {
+          .landing-hero {
+            overflow-x: hidden;
+          }
+
+          /* Stars: smaller and repositioned so they don't collide with the card */
+          .star--sm span {
+            font-size: 22px;
+          }
+          .star--lg span {
+            font-size: 30px;
+          }
+          .star--1 {
+            left: 6%;
+            top: 20%;
+          }
+          .star--2 {
+            left: 12%;
+            top: 14%;
+          }
+          .star--3 {
+            left: 44%;
+            bottom: 6%;
+          }
+
+          /* Stack the photo card centered instead of pinned to the left */
+          .photo-card {
+            left: 50%;
+            bottom: 6%;
+            transform: translateX(-50%);
+            width: 78%;
+            height: 42%;
+          }
+
+          .repeat-text {
+            top: 12%;
+          }
+          .repeat-text__line {
+            margin-top: 8px;
+          }
+
+          .main-text {
+            top: 12%;
+          }
+
+          .accent-card {
+            right: 6%;
+            bottom: auto;
+            top: 50%;
+            width: 22%;
+            height: 12%;
+          }
+        }
+
+        /* ---- Small phones ---- */
+        @media (max-width: 400px) {
+          .photo-card {
+            width: 88%;
+            height: 38%;
+          }
+          .accent-card {
+            width: 26%;
+            height: 10%;
+          }
+        }
+      `}</style>
     </section>
   );
 }

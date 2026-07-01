@@ -1,5 +1,3 @@
-"use client";
-
 import { useState } from "react";
 
 const NAV_ITEMS = ["Home", "Hero", "About", "Projects", "Contact"];
@@ -59,7 +57,7 @@ export default function Navbar() {
         </a>
       </div>
 
-      <style jsx>{`
+      <style>{`
         .header {
           position: absolute;
           top: 0;
@@ -157,8 +155,8 @@ export default function Navbar() {
           max-height: 0;
           overflow: hidden;
           transition: max-height 0.3s ease;
-          background: rgba(0, 0, 0, 0.85);
-          backdrop-filter: blur(6px);
+          background: rgba(0, 0, 0, 0.3);
+          backdrop-filter: blur(8px);
         }
         .mobile-menu--open {
           max-height: 400px;
