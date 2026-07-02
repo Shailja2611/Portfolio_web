@@ -6,8 +6,8 @@ export default defineConfig({
   server: {
     port: 3000,
     proxy: {
-      // Forward /submit API calls to the Node backend during dev
-      "/submit": "http://localhost:5000",
+      // Forward /api calls to the local wrapper around api/submit.js (run `npm run dev:api`)
+      "/api": "http://localhost:5055",
     },
   },
 });
