@@ -1,4 +1,5 @@
 import { useState } from "react";
+
 import {
   FaGithub,
   FaLinkedinIn,
@@ -25,26 +26,40 @@ const Contact = () => {
   const handleChange = (e) =>
     setFormData({ ...formData, [e.target.name]: e.target.value });
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    setStatus("loading");
-    try {
-      const res = await fetch("/submit", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(formData),
+const handleSubmit = async (e) => {
+  e.preventDefault();
+  setStatus("loading");
+
+  try {
+    const res = await fetch("/api/submit", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(formData),
+    });
+    console.log("Response status:", res.status);
+    const data = await res.json();
+
+    if (data.success) {
+      setStatus("success");
+      setFormData({
+        fname: "",
+        lname: "",
+        email: "",
+        phone: "",
       });
-      if (res.ok) {
-        setStatus("success");
-        setFormData({ fname: "", lname: "", email: "", phone: "" });
-        setTimeout(() => setStatus("idle"), 3000);
-      } else {
-        setStatus("error");
-      }
-    } catch {
+
+      setTimeout(() => setStatus("idle"), 3000);
+    } else {
+      console.error(data.message);
       setStatus("error");
     }
-  };
+  } catch (err) {
+    console.error(err);
+    setStatus("error");
+  }
+};
 
   return (
     <section id="contact" className="contact">
